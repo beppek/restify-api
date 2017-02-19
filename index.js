@@ -8,6 +8,7 @@ const server = restify.createServer({
 });
 
 server.use(restify.jsonBodyParser({ mapParams: true }));
+server.use(restify.bodyParser({mapParams: false}));
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser({ mapParams: true }));
 server.use(restify.fullResponse());
