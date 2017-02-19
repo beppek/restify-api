@@ -21,4 +21,5 @@ function users(server) {
     });
 
 }
+
 module.exports = users;

@@ -1,13 +1,18 @@
 const config = require("./config");
 const restify = require("restify");
+const fs = require("fs");
 const routes = require("./routes/routes.js");
 const FirebaseInterface = require("./firebase/FirebaseInterface");
 const firebase = new FirebaseInterface();
 
-const server = restify.createServer({
+const serverOptions = {
+    key: fs.readFileSync("./secrets/myTLS.key"),
+    certificate: fs.readFileSync("./secrets/myTLS.pem"),
     name: config.name,
     version: config.version
-});
+};
+
+const server = restify.createServer(serverOptions);
 
 server.use(restify.jsonBodyParser({ mapParams: true }));
 server.use(restify.bodyParser({mapParams: false}));
