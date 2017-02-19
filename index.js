@@ -6,8 +6,8 @@ const FirebaseInterface = require("./firebase/FirebaseInterface");
 const firebase = new FirebaseInterface();
 
 const serverOptions = {
-    key: fs.readFileSync("./secrets/myTLS.key"),
-    certificate: fs.readFileSync("./secrets/myTLS.pem"),
+    key: fs.readFileSync("./secrets/key.pem"),
+    certificate: fs.readFileSync("./secrets/cert.pem"),
     name: config.name,
     version: config.version
 };
