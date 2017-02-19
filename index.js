@@ -1,6 +1,8 @@
 const config = require("./config");
 const restify = require("restify");
 const routes = require("./routes/routes.js");
+const FirebaseInterface = require("./firebase/FirebaseInterface");
+const firebase = new FirebaseInterface();
 
 const server = restify.createServer({
     name: config.name,
@@ -17,4 +19,5 @@ server.listen(config.port, () => {
     console.log(`${config.name} listening at ${config.url}`);
 });
 
+firebase.initializeApp(server);
 routes(server);
