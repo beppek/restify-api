@@ -19,7 +19,6 @@ class FirebaseInterface {
                 disabled: false
             })
                 .then((user) => {
-                    console.log(`Successfully created new user with id: ${user.uid} and display name: ${user.displayName}`);
                     resolve(user);
                 })
                 .catch((error) => {

@@ -12,12 +12,10 @@ function users(server) {
     server.post({path: "/users"}, (req, res, next) => {
         firebase.createUser(req.body)
             .then((user) => {
-                console.log(user);
                 res.send(200, {displayName: user.displayName, uid: user.uid});
                 return next();
             })
             .catch((error) => {
-                console.log(error);
                 res.send(error.code, {error: error.message});
                 return next();
             });
