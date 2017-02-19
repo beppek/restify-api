@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/1dv527/bk222bh-examination-2/issues"
   },
-  "homepage": "https://github.com/1dv527/bk222bh-examination-2#readme"
+  "homepage": "https://github.com/1dv527/bk222bh-examination-2#readme",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "restify": "^4.3.0"
+  }
 }
