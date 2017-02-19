@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv527/bk222bh-examination-2.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "github"
+  ],
+  "author": "beppek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv527/bk222bh-examination-2/issues"
+  },
+  "homepage": "https://github.com/1dv527/bk222bh-examination-2#readme"
+}
