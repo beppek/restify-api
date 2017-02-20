@@ -3,7 +3,7 @@ const restify = require("restify");
 const fs = require("fs");
 
 const githubChannel = require("./githubChannel");
-const routes = require("./routes/routes.js");
+const Router = require("./routes/Router.js");
 const FirebaseInterface = require("./firebase/FirebaseInterface");
 const firebase = new FirebaseInterface();
 const serverOptions = {
@@ -21,7 +21,9 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser({ mapParams: true }));
 server.use(restify.fullResponse());
 firebase.initializeApp(server);
-routes(server);
+
+const router = new Router(server);
+router.route();
 
 server.listen(config.port, () => {
     console.log(`${config.name} listening at ${config.url}`);

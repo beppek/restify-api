@@ -1,16 +1,28 @@
 const FirebaseInterface = require("../firebase/FirebaseInterface");
 const firebase = new FirebaseInterface();
 
-function authentications(server) {
-    server.post({path: "/authentications"}, (req, res, next) => {
-        firebase.authenticateUser(req.body.email, req.body.password)
-            .then((user) => {
-                console.log(user);
+/**
+ * Authentication routes
+ */
+class Authentications {
+
+    constructor(server) {
+        this.server = server;
+    }
+
+    route() {
+        this.server.post({path: "/authentications"}, (req, res, next) => {
+            firebase.authenticateUser(req.body.email, req.body.password).then((token) => {
+                res.send(token);
+                return next();
             })
             .catch((error) => {
                 console.log(error);
+                // TODO: Send error code
+                return next();
             });
-        // return next();
-    });
+        });
+    }
 }
-module.exports = authentications;
+
+module.exports = Authentications;

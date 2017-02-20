@@ -1,26 +1,45 @@
 const FirebaseInterface = require("../firebase/FirebaseInterface");
 const firebase = new FirebaseInterface();
 
-function users(server) {
+/**
+ * User Routes
+ */
+class Users {
 
-    server.get({path: "/users"}, (req, res, next) => {
-        res.header("Allow", "POST");
-        res.send(405);
-        return next();
-    });
+    constructor(server) {
+        this.server = server;
+    }
 
-    server.post({path: "/users"}, (req, res, next) => {
-        firebase.createUser(req.body)
-            .then((user) => {
-                res.send(200, {displayName: user.displayName, uid: user.uid});
+    route() {
+        /**
+         * GET /users
+         * Method not allowed
+         */
+        this.server.get({path: "/users"}, (req, res, next) => {
+            res.header("Allow", "POST");
+            res.send(405);
+            return next();
+        });
+
+        /**
+         * POST /users
+         * Creates new user
+         * Expects email, password, displayName and photoURL(optional)
+         * returns displayName, uid and jwt
+         */
+        this.server.post({path: "/users"}, (req, res, next) => {
+            firebase.createUser(req.body).then((data) => {
+                res.send(200, {displayName: data.displayName, uid: data.uid, jwt: data.jwt});
                 return next();
             })
             .catch((error) => {
                 res.send(error.code, {error: error.message});
                 return next();
             });
-    });
+        });
+
+    }
 
 }
 
-module.exports = users;
+module.exports = Users;
