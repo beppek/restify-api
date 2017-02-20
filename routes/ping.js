@@ -7,15 +7,21 @@ class Ping {
     }
 
     route() {
+        this.get(this.server);
+    }
+
+    /**
+     * GET /ping
+     */
+    get(server) {
         /**
-         * GET /ping
+         * /ping
          * responds pong
          */
-        this.server.get({name: "ping", path: "/ping"}, (req, res, next) => {
+        server.get({name: "ping", path: "/ping"}, (req, res, next) => {
             res.send({answer: "pong"});
             return next();
         });
-
     }
 }
 module.exports = Ping;

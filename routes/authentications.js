@@ -11,7 +11,19 @@ class Authentications {
     }
 
     route() {
-        this.server.post({path: "/authentications"}, (req, res, next) => {
+        this.post(this.server);
+    }
+
+    /**
+     * POST /authentications
+     */
+    post(server) {
+        /**
+         * /authentications
+         * Authenticate user against firebase
+         * return jwt
+         */
+        server.post({path: "/authentications"}, (req, res, next) => {
             firebase.authenticateUser(req.body.email, req.body.password).then((token) => {
                 res.send(token);
                 return next();

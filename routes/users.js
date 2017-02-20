@@ -11,23 +11,36 @@ class Users {
     }
 
     route() {
+        this.get(this.server);
+        this.post(this.server);
+    }
+
+    /**
+     * GET /users/*
+     */
+    get(server) {
         /**
-         * GET /users
+         * /users
          * Method not allowed
          */
-        this.server.get({path: "/users"}, (req, res, next) => {
+        server.get({path: "/users"}, (req, res, next) => {
             res.header("Allow", "POST");
             res.send(405);
             return next();
         });
+    }
 
+    /**
+     * POST /users/*
+     */
+    post(server) {
         /**
-         * POST /users
+         * /users
          * Creates new user
          * Expects email, password, displayName and photoURL(optional)
          * returns displayName, uid and jwt
          */
-        this.server.post({path: "/users"}, (req, res, next) => {
+        server.post({path: "/users"}, (req, res, next) => {
             firebase.createUser(req.body).then((data) => {
                 res.send(200, {displayName: data.displayName, uid: data.uid, jwt: data.jwt});
                 return next();
@@ -37,7 +50,6 @@ class Users {
                 return next();
             });
         });
-
     }
 
 }
