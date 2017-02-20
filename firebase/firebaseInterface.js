@@ -38,10 +38,16 @@ class FirebaseInterface {
         });
     }
 
-    authenticateUser(data) {
+    authenticateUser(email, password) {
         firebase.initializeApp(config.firebase);
         return new Promise((resolve, reject) => {
-
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((user) => {
+                    console.log(user.uid);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         });
     }
 }
