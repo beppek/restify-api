@@ -1,10 +1,11 @@
 const config = require("./config");
 const admin = require("firebase-admin");
+const firebase = require("firebase");
 
 class FirebaseInterface {
 
     initializeApp() {
-        admin.initializeApp(config);
+        admin.initializeApp(config.admin);
     }
 
     createUser(data) {
@@ -34,6 +35,13 @@ class FirebaseInterface {
                     let message = error.message;
                     reject({code: code, message: message});
                 });
+        });
+    }
+
+    authenticateUser(data) {
+        firebase.initializeApp(config.firebase);
+        return new Promise((resolve, reject) => {
+
         });
     }
 }

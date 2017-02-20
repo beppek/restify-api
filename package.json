@@ -26,6 +26,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "body-parser": "^1.16.1",
     "firebase": "^3.6.9",
     "firebase-admin": "^4.1.1",
     "restify": "^4.3.0"
